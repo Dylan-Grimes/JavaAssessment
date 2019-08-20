@@ -1,6 +1,9 @@
 ﻿package com.qa.javaAssessment;
 
 public class Assessment {
+	
+	//git test change
+	
 
 	// Given a string, return a string where
 	// for every char in the original string,
@@ -93,11 +96,10 @@ public class Assessment {
 
 	public String nMid(String input, int a) {
 		String word = "";
+		
 		for (int i = 0; i < input.length(); i++) {
 			if(i == (input.length()/2) || i == (input.length()/2 - (a / 2)) || i == (input.length()/2 + (a / 2))) {
-				for(int j = 0; j < a; j++) {
 				word += "";
-				}
 			}
 			else {
 				word += input.substring(i,i+1);
@@ -116,22 +118,26 @@ public class Assessment {
 	// superBlock("") ==> 0
 
 	public int superBlock(String input) {
+		
 		int count = 0;
-		String temp = "";
+		int length = input.length();
+		int tempCount = 0;
 		
-		for(int i = 0; i < input.length(); i++) {
-		
+		for (int i = 0; i < length; i++) {
+
+			if (i < length - 1 && input.charAt(i) == input.charAt(i + 1)) {
+			 	tempCount++;
+			}
+			
+			if (tempCount > count) {
+				count = tempCount;
+				tempCount = 0;
+			}
+			
+			
 		}
-//		for(int i = 0; i < input.length(); i++) {
-//			if (!input.substring(i,i+1).equals("")) {
-//				temp += input.substring(i,i+1);
-//			}
-//			if (input.substring(i,i+1).equals(temp)) {
-//				count ++;
-//			} else {
-//				
-//			}
-//		}
+		
+
 		return count;
 
 	}
@@ -145,13 +151,44 @@ public class Assessment {
 
 	public int amISearch(String arg1) {
 		int count = 0;
-		for (int i = 0; i < arg1.length(); i++) {
-			if ((((arg1.substring(i,i+1).equals("a") && (arg1.substring(i+1,i+1).equals("m"))) &&  
-					(!arg1.substring(i+2,i+1).equals(" ")) || (!arg1.substring(i-1,i+1).equals(" "))))) {
-				count ++;
-			} 
+		int length = arg1.length();
+		//String text = arg1.toLowerCase();
+		for (int i = 0; i < length; i++) {
+			//kl nint test = ;
+			if (i < length - 2  && 
+					(!(arg1.indexOf('a') == 0) && arg1.charAt(i) == ' ' && arg1.charAt(i+1) == 'a' && arg1.charAt(i+2) == 'm' && arg1.charAt(i+3) == ' ') || 
+					(arg1.indexOf('A') == 0 && arg1.charAt(i) == 'A' && arg1.charAt(i+1) == 'm' && arg1.charAt(i+2) == ' ') 
+				) {
+				count++;
+			}
+			
+			if (i > length - (length - 2) && 
+					(arg1.indexOf('a') == 0 && arg1.charAt(i) == 'a' && arg1.charAt(i+1) == 'm' && arg1.charAt(i+2) == ' ')) {
+				count++;
+			}else if(i > length + 1 && (arg1.indexOf('a') == 0 && arg1.charAt(i) == ' ' && arg1.charAt(i+1) == 'a' && arg1.charAt(i+2) == 'm' && arg1.charAt(i+3) == ' ')) {
+				count++;
+			}
+			
 		}
+//		int index = 0;
+//		while (index != -1) {
+//			index = arg1.indexOf("Am ", index);
+//			if (index != -1) {
+//				index++;
+//				count++;
+//			}
+//		}
+//		
+//		int index1 = 0;
+//		while (index1 != -1) {
+//			index1 = arg1.indexOf(" am ", index);
+//			if (index1 != -1) {
+//				index1++;
+//				count++;
+//			}
+		
 		return count;
+
 	}
 	
 	
@@ -196,41 +233,72 @@ public class Assessment {
 	//largest("555 72 86 45 10") ==> 15
 	
 	public int largest(String arg1) {
-		int output = 0;
+		int length = arg1.length();
+		int result = 0;
 		int num = 0;
 		int temp = 0;
-		int largestNum = 0;
-		//String number = "0";
-		for (int i = 0; i < arg1.length(); i++) {
-			if(!arg1.substring(i,i+1).equals(" ")) {
-				switch (arg1.substring(i,i+1)) {
-				case "1":
-					num = 1;
-				case "2":
-					num = 2;
-				case "3":
-					num = 3;
-				case "4":
-					num = 4;
-				case "5":
-					num = 5;
-				case "6":
-					num = 6;
-				case "7":
-					num = 7;
-				case "8":
-					num = 8;
-				case "9":
-					num = 9;
-				default:
-					num = 0;
-					break;
-				}
-				temp += num;
+		int finalInt = 0;
+		for (int i = 0; i < length; i++) {
+			char number = arg1.charAt(i);
+			
+			
+			if (number == ' ') {
+				num = 0;
 			}
+			
+			else if (number == '0') {
+				num = 0;
+				result = temp + num;
+
+			}
+
+			else if (number == '1') {
+				num = 1;
+				result += num;
+			}
+			else if (number == '2') {
+				num = 2;
+				result += num;
+			}
+			else if (number == '3') {
+				num = 3;
+				result += num;
+			}
+			else if (number == '4') {
+				num = 4;
+				result += num;
+			}
+			else if (number == '5') {
+				num = 5;
+				result += num;
+			}
+			else if (number == '6') {
+				num = 6;
+				result += num;
+			}
+			else if (number == '7') {
+				num = 7;
+				result += num;
+			}
+			else if (number == '8') {
+				num = 8;
+				result += num;
+			}
+			else if (number == '9') {
+				num = 9;
+				result += num;
+			}	
+			
+			
+			if (result > finalInt) {
+				finalInt = result;
+				result = 0;
+			}
+
+			
 		}
 		
-		return temp;
+		return finalInt;
 	}
 				
 		
